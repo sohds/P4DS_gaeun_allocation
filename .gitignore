@@ -1,6 +1,8 @@
 # 가은의 원본 데이터 (매출 포함)
 # 카페 가은에서 매출 절대 보이지 않게 하기로 이야기 나눴어서, GitHub에서 Untracking 하도록 설정
+# 230211_1hour_data의 경우, 기존 매출과 함께 이전에 일일이 annotation(학기, 계절, event, time)했던 데이터
 resource/rawdata/i03_i12/*
+resource/230211_1hour_data.xlsx
 
 
 
