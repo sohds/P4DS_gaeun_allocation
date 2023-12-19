@@ -232,3 +232,55 @@
             - (-) 영향을 끼치는 요인에는 알바생을 덜 사용하는 방향을 제안
         - 마케팅 제안
             - 알바생을 덜 사용하지 않을거면, 세트 메뉴 할인 등을 (-) 영향인 시간대(15시 이후)에 진행해서 사람들을 더 오게 만드는 전략을 택하는 방법도 좋은 마케팅 방법이 될 것으로 예상
+
+3. Decision Tree Classification
+    1. 개념
+        
+        [Classification](https://github.com/sohds/P4DS_gaeun_allocation/wiki/Classification)
+        
+    2. 활용 방향
+        - 시간대별 주문횟수에 영향을 미치는 요인 분석
+            - F1 Score로 모델 적합도 확인
+            - 각 feature의 중요도(importance)값 확인
+    3. 전처리 과정  (decisiontree_2nd.ipynb 파일 내에서 진행)
+        - ‘final_for_modles.xlsx’ 안의 categorical 데이터들을 Decision Tree 모델이 이해할 수 있는 One-Hot Encoding을 통해 binary data로 변환
+        - 혼잡도 전처리
+            - 혼잡도 개념 설명
+            
+            ![histogram.jpeg](https://prod-files-secure.s3.us-west-2.amazonaws.com/bfc5abc4-9bcf-48a0-a286-bd48a263cc78/4904db52-596a-4430-b2f5-4ad2e96ea716/histogram.jpeg)
+            
+            - Decision Tree Classification을 위해 혼잡도 계산
+                - 합계 열을 기준으로, 주문 혼잡도를 계산
+                    - 혼잡: 55 이상
+                    - 보통: 55 미만 25 이상
+                    - 여유: 25 미만
+    4. 모델링 코드 (decisiontree_2nd.ipynb)
+        - Decision Tree 모델에 맞게 전처리 후 Decision Tree Classification 진행
+    5. 결과
+        - Decision Tree Classification 시각화 결과
+        
+        ![tree_visual_2nd.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/bfc5abc4-9bcf-48a0-a286-bd48a263cc78/d965d9ae-2764-4deb-b6e3-55a13fe95f77/tree_visual_2nd.png)
+        
+        - 각 특성들의 중요도 수치 확인
+        
+        ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/bfc5abc4-9bcf-48a0-a286-bd48a263cc78/4a5e28e0-9b19-49ce-b7d8-cf23a6adb84c/Untitled.png)
+        
+        ‘3-4교시’, ‘금요일’, ‘11시’, ‘기온’ 순으로 높은 중요도를 보임.
+        
+    6. 개선점
+        - 발생 문제
+            - 노드를 나누는 기준이 처음부터 확실하지 않음을 확인 (3-4교시(12-15시)인데, 11시가 아닌 경우와 11시인 경우를 나눔)
+            
+            ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/bfc5abc4-9bcf-48a0-a286-bd48a263cc78/407937d6-6f8a-4f20-bdb0-18e7045e3146/Untitled.png)
+            
+            - Feature Importance가 긍정적(양수)으로 영향을 미치는 것인지, 부정적(음수)으로 미치는 것인지 확인할 방법이 없음 (vs. Linear Regression)
+            - one-hot encoded 변수들이 Decision Tree에서 분류 지표로 쓰일 때, 기준이 너무 애매하게 쓰인다. (변수의 기준이 ≥ 0.5가 아니라, ≤ 0.5로, `**not 변수**`라는 기준으로 사용된다는 점)
+        - 개선점
+            - One-Hot Encoding만 가능한 줄 알고 모델링을 진행했는데, Ordinal Encoding도 가능하다는 점을 알게 되어, ‘feat_dt_2nd.ipynb’ 모델을 다시 돌려봄.
+                - 기존 model/decisiontree_(학기).ipynb 파일들과 달리, **Ordinal Encoding**을 진행하고 시간의 경우 int형으로 넣어주는 시도 진행
+            - Decision Tree가 지표는 좋게 나왔는데 노드 기준에 대한 부분에 아쉬웠어서 Random Forest 모델을 사용하는 등의 방법을 사용할 수 있을 것 같음.
+
+### 마무리
+
+- 아쉬운 점 및 추후 디벨롭
+    - 변수로 중요하게 작용했던 시계열 특성에 맞춰, 시계열 분석에 맞는 모델을 사용해보는 것이 좋을 것 같음.
