@@ -255,7 +255,7 @@
                     - 혼잡: 55 이상
                     - 보통: 55 미만 25 이상
                     - 여유: 25 미만
-                    - 
+   
     4. 모델링 코드 (decisiontree_2nd.ipynb)
         - Decision Tree 모델에 맞게 전처리 후 Decision Tree Classification 진행
           
