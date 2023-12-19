@@ -233,10 +233,10 @@
         - 마케팅 제안
             - 알바생을 덜 사용하지 않을거면, 세트 메뉴 할인 등을 (-) 영향인 시간대(15시 이후)에 진행해서 사람들을 더 오게 만드는 전략을 택하는 방법도 좋은 마케팅 방법이 될 것으로 예상
 
-3. Decision Tree Classification
+3. **Decision Tree Classification**
     1. 개념
         
-        [Classification](https://github.com/sohds/P4DS_gaeun_allocation/wiki/Classification)
+        [Classification 개념 - WIKI에서 보기](https://github.com/sohds/P4DS_gaeun_allocation/wiki/Classification)
         
     2. 활용 방향
         - 시간대별 주문횟수에 영향을 미치는 요인 분석
@@ -247,31 +247,35 @@
         - 혼잡도 전처리
             - 혼잡도 개념 설명
             
-            ![histogram.jpeg](https://prod-files-secure.s3.us-west-2.amazonaws.com/bfc5abc4-9bcf-48a0-a286-bd48a263cc78/4904db52-596a-4430-b2f5-4ad2e96ea716/histogram.jpeg)
+            ![image](https://github.com/sohds/P4DS_gaeun_allocation/assets/122262388/f99f1ac9-2109-4b77-be83-ba172144afec)
+
             
             - Decision Tree Classification을 위해 혼잡도 계산
                 - 합계 열을 기준으로, 주문 혼잡도를 계산
                     - 혼잡: 55 이상
                     - 보통: 55 미만 25 이상
                     - 여유: 25 미만
+                    - 
     4. 모델링 코드 (decisiontree_2nd.ipynb)
         - Decision Tree 모델에 맞게 전처리 후 Decision Tree Classification 진행
+          
     5. 결과
         - Decision Tree Classification 시각화 결과
         
-        ![tree_visual_2nd.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/bfc5abc4-9bcf-48a0-a286-bd48a263cc78/d965d9ae-2764-4deb-b6e3-55a13fe95f77/tree_visual_2nd.png)
+        ![](https://github.com/sohds/P4DS_gaeun_allocation/blob/main/visualization/png/tree_visual_2nd.png)
         
         - 각 특성들의 중요도 수치 확인
         
-        ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/bfc5abc4-9bcf-48a0-a286-bd48a263cc78/4a5e28e0-9b19-49ce-b7d8-cf23a6adb84c/Untitled.png)
+        <img src="https://github.com/sohds/P4DS_gaeun_allocation/blob/main/visualization/png/dt_2nd_feature_importance_graph.png" width="500px;" alt=""/>
         
         ‘3-4교시’, ‘금요일’, ‘11시’, ‘기온’ 순으로 높은 중요도를 보임.
         
     6. 개선점
         - 발생 문제
             - 노드를 나누는 기준이 처음부터 확실하지 않음을 확인 (3-4교시(12-15시)인데, 11시가 아닌 경우와 11시인 경우를 나눔)
-            
-            ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/bfc5abc4-9bcf-48a0-a286-bd48a263cc78/407937d6-6f8a-4f20-bdb0-18e7045e3146/Untitled.png)
+          
+          <img src="https://github.com/sohds/P4DS_gaeun_allocation/assets/122262388/9ab58aea-bf1d-4853-a778-e164b541c64c" width="500px;" alt=""/>
+
             
             - Feature Importance가 긍정적(양수)으로 영향을 미치는 것인지, 부정적(음수)으로 미치는 것인지 확인할 방법이 없음 (vs. Linear Regression)
             - one-hot encoded 변수들이 Decision Tree에서 분류 지표로 쓰일 때, 기준이 너무 애매하게 쓰인다. (변수의 기준이 ≥ 0.5가 아니라, ≤ 0.5로, `**not 변수**`라는 기준으로 사용된다는 점)
