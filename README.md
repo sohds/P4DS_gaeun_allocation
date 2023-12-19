@@ -278,7 +278,7 @@
 
             
             - Feature Importance가 긍정적(양수)으로 영향을 미치는 것인지, 부정적(음수)으로 미치는 것인지 확인할 방법이 없음 (vs. Linear Regression)
-            - one-hot encoded 변수들이 Decision Tree에서 분류 지표로 쓰일 때, 기준이 너무 애매하게 쓰인다. (변수의 기준이 ≥ 0.5가 아니라, ≤ 0.5로, `**not 변수**`라는 기준으로 사용된다는 점)
+            - one-hot encoded 변수들이 Decision Tree에서 분류 지표로 쓰일 때, 기준이 너무 애매하게 쓰인다. (변수의 기준이 ≥ 0.5가 아니라, ≤ 0.5로, `not 변수`라는 기준으로 사용된다는 점)
         - 개선점
             - One-Hot Encoding만 가능한 줄 알고 모델링을 진행했는데, Ordinal Encoding도 가능하다는 점을 알게 되어, ‘feat_dt_2nd.ipynb’ 모델을 다시 돌려봄.
                 - 기존 model/decisiontree_(학기).ipynb 파일들과 달리, **Ordinal Encoding**을 진행하고 시간의 경우 int형으로 넣어주는 시도 진행
