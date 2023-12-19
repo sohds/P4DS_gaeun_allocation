@@ -57,3 +57,30 @@ def map_hour(df, column_name):
     }
     df[column_name] = df[column_name].astype(str).replace(hour_mapping)
     return df
+
+def map_hour_int(df, column_name):
+    hour_mapping = {
+        '8' : 8,
+        '9' : 9,
+        '10' : 10,
+        '11' : 11,
+        '12' : 12,
+        '13' : 13,
+        '14' : 14,
+        '15' : 15,
+        '16' : 16,
+        '17' : 17
+    }
+    df[column_name] = df[column_name].astype(str).replace(hour_mapping)
+    return df
+
+
+def categorize_hour(hour):
+    if hour in [8, 9, 10, 11]:
+        return '1-2교시'
+    elif hour in [12, 13, 14]:
+        return '3-4교시'
+    elif hour in [15, 16, 17]:
+        return '5-6교시'
+    else:
+        return None
