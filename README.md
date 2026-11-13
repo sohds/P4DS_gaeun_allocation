@@ -15,8 +15,6 @@
         <br>
         <sub>데이터사이언스학과</sub>
         <br>
-        <sub>2022111746</sub>
-        <br>
         <sub>전처리, 모델링</sub>
     </td>
     <td align="center">
@@ -28,8 +26,6 @@
         <br>
         <sub>데이터사이언스학과</sub>
         <br>
-        <sub>2022111729</sub>
-        <br>
         <sub>전처리, 시각화</sub>
     </td>
     <td align="center">
@@ -40,8 +36,6 @@
       </a>
         <br>
         <sub>데이터사이언스학과</sub>
-        <br>
-        <sub>2022111738</sub>
         <br>
         <sub>전처리, 시각화</sub>
     </td>
